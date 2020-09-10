@@ -9,16 +9,17 @@ def empty(a):
 cv2.namedWindow("TrackBars")
 cv2.resizeWindow("TrackBars", 640, 240)
 cv2.createTrackbar("Hue Min", "TrackBars", 0, 179, empty)
-cv2.createTrackbar("Hue Max", "TrackBars", 179, 179, empty)
 cv2.createTrackbar("Sat Min", "TrackBars", 0, 255, empty)
-cv2.createTrackbar("Sat Max", "TrackBars", 255, 255, empty)
 cv2.createTrackbar("Val Min", "TrackBars", 0, 255, empty)
+cv2.createTrackbar("Hue Max", "TrackBars", 179, 179, empty)
+cv2.createTrackbar("Sat Max", "TrackBars", 255, 255, empty)
 cv2.createTrackbar("Val Max", "TrackBars", 255, 255, empty)
 
 cap = cv2.VideoCapture(0)
 
 while True:
     success, img = cap.read()
+    img = cv2.flip(img, 1)
     cv2.imshow("Video", img)
 
     imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
